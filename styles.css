@@ -1,6 +1,6 @@
 .container {
     display: flex;    
-    /* justify-content: center; */
+    justify-content: center;
     align-items: center;
 }
 
@@ -8,7 +8,11 @@
     display: flex;
     flex-direction: column;
     width: 415px;
-    border: 10px solid #555;
+    height: 570px;
+    border: 5px solid #555;
+    background-color: #cddae4;
+    border-radius: 5%;
+    margin-top: 50px;
 }
 
 .display-container {
@@ -38,6 +42,9 @@
 #clear {
     margin-right: 15px;
     margin-bottom: 0;
+    border-radius: 0;
+    height: 100px;
+    background-color: #71dfaa;
 }
 
 .btn-container {
@@ -61,11 +68,11 @@
     border-radius: 50%;
     height: 75px;
     width: 75px;
-    margin-bottom: 30px;  
+    margin-bottom: 5px;
     border:none;
-    background-color: #648295; 
+    background-color: #eaf7ff; 
   }
 
   .operator {
-    background-color: #75beef; 
+    background-color: #97d5ff; 
   }
