@@ -1,3 +1,9 @@
+const display = document.querySelector('.display');
+const numbers = document.querySelectorAll('.btn.number');
+const operators = document.querySelectorAll('.btn.operator');
+const operatorsArray = Array.from(operators);
+
+
 function add(a, b) {
     return a + b;
 }
@@ -29,3 +35,20 @@ function operate(operator, num1, num2) {
         return divide(num1,num2);
     }
 }
+
+
+
+// Add click event listener to number btns that places the textContent of pressed btns on the display
+numbers.forEach(function (number) {
+    number.addEventListener('click', () => {
+        display.textContent += number.textContent;
+    })
+})
+
+// need to store the full number somewhere
+// save which operation has been chosen
+// then operate() on them when the user presses the “=” key.
+
+// You should already have the code that can populate the display, so once operate() has been called, update the display with the ‘solution’ to the operation.
+
+// This is the hardest part of the project. You need to figure out how to store all the values and call the operate function with them.
