@@ -47,6 +47,11 @@
     background-color: #71dfaa;
 }
 
+#clear:hover {    
+    background-color: #4abc85;
+}
+
+
 .btn-container {
     display: flex;
     flex-direction: column;
@@ -73,6 +78,14 @@
     background-color: #eaf7ff; 
   }
 
+  .btn:hover {
+    background-color: #dbddf1;
+  }
+
   .operator {
     background-color: #97d5ff; 
+  }
+
+  .operator:hover {
+    background-color: #68afe0; 
   }
