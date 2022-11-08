@@ -30,7 +30,7 @@
     display: flex;
     justify-content: end;
     align-items: center;
-    background-color: #eee;
+    background-color: #b0ceff;
     height: 100px;
     width: 225px;
     font-size: 2rem;
@@ -49,6 +49,10 @@
 
 #clear:hover {    
     background-color: #4abc85;
+}
+
+#equals {
+    background-color: #b3c7ff;
 }
 
 
