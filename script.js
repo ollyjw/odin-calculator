@@ -120,6 +120,15 @@ equalsBtn.addEventListener('click', () => {
     // number strings in operation array coverted to numbers
     convertToNumber();
 
+    // Display a snarky error message if the user tries to divide by 0… and don’t let it crash your calculator!
+    if(operation[2] === 0 && operation[1] === "/") {
+        result = "DON'T..."
+        display.textContent = result;
+        displayValue[0] = result;
+        operation = [];
+        return result;
+    }
+
     result = operate(operation[1], operation[0], operation[2]);
     // add result to display box
     display.textContent = result;
@@ -139,16 +148,12 @@ equalsBtn.addEventListener('click', () => {
 
 // Pressing '=' before entering all of the numbers or an operator could cause problems!
 
-// Pressing “clear” should wipe out any existing data.. make sure the user is really starting fresh after pressing “clear”
 
-// Display a snarky error message if the user tries to divide by 0… and don’t let it crash your calculator!
 
 
 // Extra Credit
 
 // Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
-
-// Make it look nice! This is a great project to practice your CSS skills. At least make the operations a different color from the keypad buttons.
 
 // Add a “backspace” button, so the user can undo if they click the wrong number.
 
