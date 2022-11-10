@@ -4,6 +4,7 @@ const operators = document.querySelectorAll('.btn.operator');
 const operatorsArray = ['+', '-', '*', '/'];
 const clearBtn = document.querySelector('#clear');
 const equalsBtn = document.querySelector('#equals');
+const decimalBtn = document.querySelector('#decimal');
 let result;
 
 
@@ -79,7 +80,7 @@ function populateDisplay() {
     }
 
     // += adds the value of the right operand to a variable and assigns the result to the variable
-    // use of 'this' means functionality could be applied to any input
+    // use of 'this' means functionality could be applied to any input e.g. decimal
     display.textContent += this.textContent;
     displayValue[0] = display.textContent;
 }
@@ -88,6 +89,15 @@ function populateDisplay() {
 // Add click event listener to number btns that uses populateDisplay var
 numbers.forEach(function (number) {
     number.addEventListener('click', populateDisplay);    
+})
+
+// decimal btn adds decimal to number
+decimalBtn.addEventListener('click', () => {
+    if (display.textContent.includes('.')) {
+        return;
+    }
+    // The call() method calls the function with a given 'this' value and arguments provided individually.
+    populateDisplay.call(decimalBtn);
 })
 
 // Add click event listener to operator btns that places the textContent of inputs on the display & 'pushes' its value to operation array
@@ -163,28 +173,11 @@ equalsBtn.addEventListener('click', () => {
 })
 
 
-
-// DONE
-
-// Gotchas: watch out for and fix these bugs if they show up in your code:
-// Users should be able to string together several operations and get the right answer, with each pair of numbers being evaluated at a time. For example, 12 + 7 - 5 * 3 = should yield 42. An example of the behavior we’re looking for would be this student solution - https://mrbuddh4.github.io/calculator/
-
-// Your calculator should not evaluate more than a single pair of numbers at a time. Example: you press a number button (12), followed by an operator button (+), a second number button (7), and finally a second operator button (-).
-// Your calculator should then do the following: first, evaluate the first pair of numbers (12 + 7), second, display the result of that calculation (19), and finally, use that result (19) as the first number in your new calculation, along with the next operator (-).
-
-
 // TO DO: 
 
 // You should round answers with long decimals so that they don’t overflow the screen.
 
-// Pressing '=' before entering all of the numbers or an operator could cause problems!
-
-
-
-
 // Extra Credit
-
-// Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
 
 // Add a “backspace” button, so the user can undo if they click the wrong number.
 
