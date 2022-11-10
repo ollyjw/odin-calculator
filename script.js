@@ -1,7 +1,6 @@
 const display = document.querySelector('.display');
 const numbers = document.querySelectorAll('.btn.number');
 const operators = document.querySelectorAll('.btn.operator');
-// changed operators Array.from code as that stored the html button tags not the content
 const operatorsArray = ['+', '-', '*', '/'];
 const clearBtn = document.querySelector('#clear');
 const equalsBtn = document.querySelector('#equals');
@@ -42,7 +41,7 @@ function operate(operator, num1, num2) {
 
 // need to store the full number (display value) before operator is pressed
 let displayValue = [];
-// save which operation has been chosen in array e.g. [1,+,2]  or [2,*,2]
+// save which operation/calculation has been chosen in array e.g. [1,+,2]  or [2,*,2]
 let operation = [];
 
 
@@ -88,9 +87,41 @@ numbers.forEach(function (number) {
 
 // Add click event listener to operator btns that places the textContent of inputs on the display & 'pushes' its value to operation array
 operators.forEach(function (operator) {
-    operator.addEventListener('click', () => {
+    operator.addEventListener('click', () => {       
+
         display.textContent = operator.textContent;
         operation.push(displayValue[0]);
+
+        if (display.textContent === '') {
+			return;
+		}
+
+
+        // when operation array reaches 3 (i.e. 1,+,1) convert to number, calculate result and push that result to the array
+        if(operation.length === 3) {
+            // convert number strings to number
+			convertToNumber();
+            // operate(operator, num1, num2)
+			result = operate(operation[1], operation[0], operation[2]);
+            // empty the display value and add result to it
+			displayValue = [];
+			displayValue.push(result);
+
+            console.log(displayValue);
+            console.log(operation); 
+             
+            // Display result of calculation
+            // display.textContent = displayValue;
+
+            // on the next operator press, display needs to be reset so that the result can be used as the first value in the next calculation
+                                   
+
+            // empty operation and add result to it
+			operation = [];
+			operation.push(result);
+
+            console.log(operation);
+		}
     })
 })
 
@@ -140,9 +171,10 @@ equalsBtn.addEventListener('click', () => {
 
 
 // Gotchas: watch out for and fix these bugs if they show up in your code:
-// Users should be able to string together several operations and get the right answer, with each pair of numbers being evaluated at a time. For example, 12 + 7 - 5 * 3 = should yield 42. An example of the behavior we’re looking for would be this student solution.
+// Users should be able to string together several operations and get the right answer, with each pair of numbers being evaluated at a time. For example, 12 + 7 - 5 * 3 = should yield 42. An example of the behavior we’re looking for would be this student solution - https://mrbuddh4.github.io/calculator/
 
-// Your calculator should not evaluate more than a single pair of numbers at a time. Example: you press a number button (12), followed by an operator button (+), a second number button (7), and finally a second operator button (-). Your calculator should then do the following: first, evaluate the first pair of numbers (12 + 7), second, display the result of that calculation (19), and finally, use that result (19) as the first number in your new calculation, along with the next operator (-).
+// Your calculator should not evaluate more than a single pair of numbers at a time. Example: you press a number button (12), followed by an operator button (+), a second number button (7), and finally a second operator button (-).
+// Your calculator should then do the following: first, evaluate the first pair of numbers (12 + 7), second, display the result of that calculation (19), and finally, use that result (19) as the first number in your new calculation, along with the next operator (-).
 
 // You should round answers with long decimals so that they don’t overflow the screen.
 
