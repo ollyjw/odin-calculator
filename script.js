@@ -35,7 +35,12 @@ function operate(operator, num1, num2) {
         return multiply(num1, num2);
     }
     else if(operator == '/') {
-        return divide(num1,num2);
+        // Display a snarky error message if the user tries to divide by 0… and don’t let it crash your calculator!
+        if(num2 === 0) {
+            return "DON'T...";
+        } else {
+            return divide(num1,num2);
+        }
     }
 }
 
@@ -150,15 +155,6 @@ equalsBtn.addEventListener('click', () => {
     operation.push(displayValue[0]);
     // number strings in operation array coverted to numbers
     convertToNumber();
-
-    // Display a snarky error message if the user tries to divide by 0… and don’t let it crash your calculator!
-    if(operation[2] === 0 && operation[1] === "/") {
-        result = "DON'T..."
-        display.textContent = result;
-        displayValue[0] = result;
-        operation = [];
-        return result;
-    }
 
     result = operate(operation[1], operation[0], operation[2]);
     // add result to display box
