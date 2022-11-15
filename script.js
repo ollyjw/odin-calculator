@@ -36,20 +36,37 @@ function operate(operator, num1, num2) {
         return num1;
     }
 
-    if (operator == '+') {
-        return add(num1, num2);
-    } else if(operator == '-') {
-        return subtract(num1, num2);
+    let answer;
+
+    // function to round to x amount of decimal places
+    Number.prototype.round = function(n) {
+        const d = Math.pow(10, n);
+        return Math.round((this + Number.EPSILON) * d) / d;
     }
-    else if(operator == '*') {
-        return multiply(num1, num2);
+
+    if (operator === '+') {
+        answer = add(num1, num2);
+        // keep answer to 3 decimal places max so it doesn't overflow screen
+        answer = answer.round(3);
+        return answer;
+    } else if(operator === '-') {
+        answer = subtract(num1, num2);
+        answer = answer.round(3);
+        return answer;
     }
-    else if(operator == '/') {
+    else if(operator === '*') {
+        answer = multiply(num1, num2);
+        answer = answer.round(3);
+        return answer;
+    }
+    else if(operator === '/') {
         // Display a snarky error message if the user tries to divide by 0… and don’t let it crash your calculator!
         if(num2 === 0) {
             return "DON'T...";
         } else {
-            return divide(num1,num2);
+            answer = divide(num1,num2);
+            answer = answer.round(3);
+            return answer;
         }
     }
 }
@@ -168,10 +185,6 @@ equalsBtn.addEventListener('click', () => {
     equals();    
 })
 
-
-// TO DO: 
-
-// You should round answers with long decimals so that they don’t overflow the screen.
 
 // Extra Credit
 
