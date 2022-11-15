@@ -142,16 +142,14 @@ clearBtn.addEventListener('click', () => {
     reset();
 })
 
-
 function logValues() {
     console.log(`displayValue is ${displayValue}`);
 	console.log(`operation is ${operation}`);
 	console.log(`result is ${result}`);
 }
 
-
 // then operate() on them when the user presses the “=” key.
-equalsBtn.addEventListener('click', () => {
+function equals() {
     operation.push(displayValue[0]);
     // number strings in operation array coverted to numbers
     convertToNumber();
@@ -169,7 +167,10 @@ equalsBtn.addEventListener('click', () => {
 
     // empty operation array - operator btns will populate it if further calculations required
     operation = [];
-    
+}
+
+equalsBtn.addEventListener('click', () => {
+    equals();    
 })
 
 
