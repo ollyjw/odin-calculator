@@ -27,6 +27,15 @@ function divide(a, b) {
 
 // Create a new function operate that takes an operator and 2 numbers and then calls one of the above functions on the numbers
 function operate(operator, num1, num2) {
+
+    // convert number string inputs to numbers
+    num1 = Number(num1);
+    num2 = Number(num2);
+
+    if (operator === '' || num2 === '') {
+        return num1;
+    }
+
     if (operator == '+') {
         return add(num1, num2);
     } else if(operator == '-') {
@@ -50,16 +59,6 @@ let displayValue = [];
 // save which operation/calculation has been chosen in array e.g. [1,+,2]  or [2,*,2]
 let operation = [];
 
-
-// convert number string inputs to numbers
-function convertToNumber() {
-    for (let i = 0; i < operation.length; i++) {
-        // if any iterations of operation aren't an operator, then convert to number
-        if (operation[i] !== '+' && operation[i] !== '-' && operation[i] !== '*' && operation[i] !== '/') {
-            operation[i] = Number(operation[i]);
-        }
-    }
-}
 
 // clearing display box on screen only
 function clearDisplay() {
@@ -114,8 +113,6 @@ operators.forEach(function (operator) {
 
         // when operation array contains 3 values (i.e. '1', '+', '1') convert to number, calculate result and push that result to the operation array
         if(operation.length === 3) {
-            // convert number strings to number
-			convertToNumber();
             // operate(operator, num1, num2) - operation[1] should always be operator
 			result = operate(operation[1], operation[0], operation[2]);
             // empty the display value and add result to it
@@ -151,8 +148,6 @@ function logValues() {
 // then operate() on them when the user presses the “=” key.
 function equals() {
     operation.push(displayValue[0]);
-    // number strings in operation array coverted to numbers
-    convertToNumber();
 
     result = operate(operation[1], operation[0], operation[2]);
     // add result to display box
@@ -179,7 +174,5 @@ equalsBtn.addEventListener('click', () => {
 // You should round answers with long decimals so that they don’t overflow the screen.
 
 // Extra Credit
-
-// Add a “backspace” button, so the user can undo if they click the wrong number.
 
 // Add keyboard support! You might run into an issue where keys such as (/) might cause you some trouble. Read the MDN documentation for event.preventDefault to help solve this problem.
